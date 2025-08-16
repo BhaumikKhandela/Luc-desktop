@@ -17,6 +17,7 @@ process.env.APP_ROOT = path.join(__dirname, "..");
 
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
 export const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
+export const VITE_APP_URL = `${import.meta.env.VITE_APP_URL}`;
 export const MAIN_DIST = path.join(process.env.APP_ROOT, "dist-electron");
 export const RENDERER_DIST = path.join(process.env.APP_ROOT, "dist");
 
@@ -107,9 +108,13 @@ function createWindow() {
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
+    studio.loadURL(VITE_APP_URL + "/studio.html");
+    floatingWebCam.loadURL(VITE_APP_URL + "/webcam.html");
   } else {
     // win.loadFile('dist/index.html')
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
+    studio.loadFile(path.join(RENDERER_DIST, "studio.html"));
+    floatingWebCam.loadFile(path.join(RENDERER_DIST, "webcam.html"));
   }
 }
 
