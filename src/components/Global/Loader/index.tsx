@@ -7,17 +7,32 @@ export const Loader = ({ color }: Props) => {
     <div aria-hidden="true">
       <svg
         className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"
-        viewBox="0 0 100 101"
+        viewBox="0 0 50 50"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0 50 0.00082777C77.6142 0.00082777 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-          fill={color || "#fff"}
+        <circle
+          cx="25"
+          cy="25"
+          r="20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeDasharray="31.416"
+          strokeDashoffset="31.416"
+          opacity="0.25"
         />
-        <path
-          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.3468C85.8542 15.1198 80.1825 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 2.94025 56.7698 3.01524C51.7666 3.36734 46.6976 6.44683 41.7345 11.2787C37.8129 15.1978 34.5485 19.7191 31.5269 23.5402C28.4013 27.864 26.3645 32.6206 25.9186 37.6723C25.3645 43.2918 26.5976 49.1198 29.2754 54.0409C31.3645 58.1198 34.8724 62.6976 38.4013 66.4531"
-          fill={color || "#fff"}
+        <circle
+          cx="25"
+          cy="25"
+          r="20"
+          fill="none"
+          stroke={color || "currentColor"}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeDasharray="31.416"
+          strokeDashoffset="10"
         />
       </svg>
     </div>
