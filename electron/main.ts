@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, desktopCapturer, ipcMain } from "electron";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -123,10 +123,56 @@ function createWindow() {
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
+    console.log("close app triggered")
     app.quit();
     win = null;
+    studio = null;
+    floatingWebCam = null;
   }
 });
+
+ipcMain.on('closeApp', () => {
+  console.log("close app triggered from ipc");
+  if (process.platform !== 'darwin'){
+    console.log("close app triggered")
+    app.quit();
+    win = null;
+    studio = null;
+    floatingWebCam = null;
+  }
+});
+
+ipcMain.handle('getSources', async() => {
+
+  console.log("get sources called");
+   const data =  await desktopCapturer.getSources({
+    thumbnailSize: { height: 100, width: 150},
+    fetchWindowIcons: true,
+    types: ['window', 'screen']
+  });
+  console.log(data);
+  return data;
+});
+
+ipcMain.on('media-sources', (event,payload) => {
+  console.log(event);
+  studio?.webContents.send('profile-received', payload);
+})
+
+ipcMain.on('resize-studio', (event,payload) => {
+  console.log(event);
+ if(payload.shrink){
+  studio?.setSize(400,100);
+ }
+ if(!payload.shrink){
+  studio?.setSize(400,250)
+ }
+})
+
+ipcMain.on('hide-plugin', (event,payload) => {
+  console.log(event);
+  win?.webContents.send('hide-plugin', payload);
+})
 
 app.on("activate", () => {
   // On OS X it's common to re-create a window in the app when the
