@@ -50,12 +50,12 @@ function createWindow() {
   });
 
   studio = new BrowserWindow({
-    width: 400,
-    height: 300,
-    minHeight: 70,
-    maxHeight: 400,
-    minWidth: 300,
-    maxWidth: 400,
+    width: 320,
+    height: 220,
+    minHeight: 160,
+    maxHeight: 260,
+    minWidth: 280,
+    maxWidth: 360,
     frame: false,
     transparent: true,
     alwaysOnTop: true,
@@ -70,12 +70,12 @@ function createWindow() {
   });
 
   floatingWebCam = new BrowserWindow({
-    width: 400,
-    height: 200,
-    minHeight: 70,
-    maxHeight: 400,
-    minWidth: 300,
-    maxWidth: 400,
+    width: 280,
+    height: 160,
+    minHeight: 140,
+    maxHeight: 200,
+    minWidth: 240,
+    maxWidth: 320,
     frame: false,
     transparent: true,
     alwaysOnTop: true,
@@ -155,7 +155,7 @@ ipcMain.handle('getSources', async() => {
 });
 
 ipcMain.on('media-sources', (event,payload) => {
-  console.log(event);
+  console.log('media sources called',event);
   studio?.webContents.send('profile-received', payload);
 })
 

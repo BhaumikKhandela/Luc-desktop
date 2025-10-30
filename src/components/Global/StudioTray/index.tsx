@@ -1,9 +1,8 @@
 import { onStopRecording, selectSources, StartRecording } from "@/lib/recorder";
-import { cn, videoRecordingTime } from "@/lib/utils";
+import { cn, resizeWindow, videoRecordingTime } from "@/lib/utils";
 import { Cast, Pause, Square } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
-type Props = {};
 
 const StudioTray = () => {
   let initialTime = new Date();
@@ -34,12 +33,19 @@ const StudioTray = () => {
 
   const videoElement = useRef<HTMLVideoElement | null>(null);
 
+  useEffect(()=> {
+  resizeWindow(preview)
+  return () => resizeWindow(preview)
+  },[preview])
+
   useEffect(() => {
    if (onSources && onSources.screen) selectSources(onSources, videoElement);
    return () => {
     selectSources(onSources!, videoElement);
    }
   },[onSources])
+
+
   useEffect(() => {
     if (!recording) return;
     const recordTimeInterval = setInterval(() => {
