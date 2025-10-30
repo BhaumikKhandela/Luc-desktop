@@ -33,10 +33,7 @@ const StudioTray = () => {
 
   const videoElement = useRef<HTMLVideoElement | null>(null);
 
-  useEffect(()=> {
-  resizeWindow(preview)
-  return () => resizeWindow(preview)
-  },[preview])
+
 
   useEffect(() => {
    if (onSources && onSources.screen) selectSources(onSources, videoElement);
