@@ -31,14 +31,29 @@ export const Widget = () => {
         })
       | null;
   } | null>(null);
-  const { user } = useUser();
+  const { isLoaded,user } = useUser();
   const { state, fetchMediaResources } = useMediaSources();
 
   useEffect(() => {
-    if (user && user.id) {
-      fetchUserProfile(user.id).then((p) => setProfile(p));
+    
+    if ( isLoaded && user && user.id) {
+   
+      fetchUserProfile(user.id).then((p) => {
+        
+        setProfile(p)});
     }
-  }, [user]);
+    fetchMediaResources();
+    
+    const handleMediaChange = () => {
+      fetchMediaResources();
+    }
+
+    navigator.mediaDevices.addEventListener('devicechange', handleMediaChange);
+
+    return () => {
+      navigator.mediaDevices.removeEventListener('devicechange', handleMediaChange);
+    }
+  }, [isLoaded,user]);
   return (
     <div className="p-5">
       <ClerkLoading>
