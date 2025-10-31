@@ -30,7 +30,7 @@ const stopRecording = () => {
 export const onDataAvailable = (e: BlobEvent) => {
   socket.emit("video-chunks", {
     chunks: e.data,
-    fileName: videoTransferFileName,
+    filename: videoTransferFileName,
   });
 };
 
