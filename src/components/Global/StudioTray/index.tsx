@@ -72,7 +72,7 @@ const StudioTray = () => {
      { preview &&  <video
         autoPlay
         ref={videoElement}
-        className={cn("w-6/12 border-2 self-end", preview ? "hidden" : "")}
+        className={cn("w-6/12 border-2 self-end", preview ? "block" : "hidden")}
       />}
       <div className="rounded-full flex justify-around items-center h-20 w-full border-2 bg-[#171717] draggable border-white/40">
         <div

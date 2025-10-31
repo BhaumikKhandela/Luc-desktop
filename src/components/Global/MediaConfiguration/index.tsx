@@ -67,11 +67,8 @@ const MediaConfiguration = ({ state, user }: Props) => {
           {...register("screen")}
           className="outline-none cursor-pointer px-5 py-2 rounded-xl border-2 text-white border-[#575655] bg-transparent w-full"
         >
-          {state.displays?.map((display, key) => {
-            if (activeScreen && activeScreen.id === display.id) {
-            console.log('display in media config',activeScreen );
-            }
-            return (
+          {state.displays?.map((display, key) => 
+            (
             <option
               selected={activeScreen && activeScreen.id === display.id}
               value={display.id}
@@ -80,7 +77,7 @@ const MediaConfiguration = ({ state, user }: Props) => {
             >
               {display.name}
             </option>)
-})}
+)}
         </select>
       </div>
       <div className="flex gap-x-5 justify-center items-center">
